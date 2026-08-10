@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinícius de Oliveira Rodrigues — Desenvolvedor de Software & Suporte Técnico</title>
+<meta name="description" content="Portfólio de Vinícius de Oliveira Rodrigues, desenvolvedor de software e analista de suporte especializado em Vue, Nuxt, Node.js, Express, JavaScript, TypeScript, Python e PostgreSQL.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23171B21%22/><path d=%22M28 32L48 52L28 72%22 stroke=%22%233654D6%22 stroke-width=%2210%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/><rect x=%2254%22 y=%2264%22 width=%2220%22 height=%228%22 rx=%224%22 fill=%22%231F8A4C%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0F2;
+    --surface:#FFFFFF;
+    --ink:#171B21;
+    --ink-soft:#4B5460;
+    --line:#DBE0E5;
+    --line-soft:#E7EBEE;
+    --blue:#3654D6;
+    --blue-ink:#24399C;
+    --green:#1F8A4C;
+    --green-bg:#E6F4EC;
+    --green-ink:#166B3A;
+    --amber:#B9770E;
+    --amber-bg:#FBF0DD;
+    --surface-inverse:#171B21;
+    --header-bg:rgba(238,240,242,0.86);
+    --hash-bg:#EAEEFC;
+    --scrollbar-track:#EEF0F2;
+    --font-mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --font-sans:'Inter', -apple-system, sans-serif;
+    --radius:10px;
+    --maxw:1120px;
+  }
+
+  [data-theme="dark"]{
+    --paper:#10141A;
+    --surface:#161B22;
+    --ink:#E7EAEF;
+    --ink-soft:#9AA4B2;
+    --line:#262C36;
+    --line-soft:#1E242D;
+    --blue:#4C6EF5;
+    --blue-ink:#9FB2FF;
+    --green:#34D399;
+    --green-bg:rgba(52,211,153,0.14);
+    --green-ink:#6FE3A0;
+    --amber:#F0B429;
+    --amber-bg:rgba(240,180,41,0.14);
+    --surface-inverse:#1B212B;
+    --header-bg:rgba(16,20,26,0.86);
+    --hash-bg:rgba(76,110,245,0.18);
+    --scrollbar-track:#10141A;
+  }
+
+  /* ---------- scrollbar ---------- */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue) var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-ink);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; color-scheme:light dark;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .3s ease, color .3s ease;
+  }
+
+  img,svg{display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  ::selection{background:var(--blue); color:#fff;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:var(--blue-ink);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 14px 0;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--green);
+    border-radius:50%;
+    box-shadow:0 0 0 3px var(--green-bg);
+  }
+
+  h1,h2,h3{font-family:var(--font-sans); font-weight:800; letter-spacing:-0.02em; margin:0;}
+
+  section{padding:88px 0;}
+  @media (max-width:720px){ section{padding:56px 0;} }
+
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px); margin-bottom:10px;}
+  .section-head p{color:var(--ink-soft); margin:0; font-size:15.5px;}
+
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:var(--header-bg);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:var(--maxw); margin:0 auto;
+  }
+  .nav-right{display:flex; align-items:center; gap:12px;}
+  .theme-toggle{
+    background:none; border:1px solid var(--line);
+    width:38px; height:38px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--ink-soft); flex-shrink:0;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .theme-toggle:hover{border-color:var(--ink); color:var(--ink);}
+  .theme-toggle svg{width:17px; height:17px;}
+  .theme-toggle .icon-moon{display:none;}
+  [data-theme="dark"] .theme-toggle .icon-sun{display:none;}
+  [data-theme="dark"] .theme-toggle .icon-moon{display:block;}
+  .logo{
+    font-family:var(--font-mono); font-weight:600; font-size:15px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{color:var(--blue);}
+  .nav-links{display:flex; gap:28px; align-items:center;}
+  .nav-links a{
+    font-size:14.5px; color:var(--ink-soft); font-weight:500;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:var(--font-mono);
+    font-size:13px; font-weight:600;
+    background:var(--surface-inverse); color:#fff;
+    padding:9px 16px; border-radius:7px;
+    border:1px solid var(--surface-inverse);
+    transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:#000; border-color:#000; transform:translateY(-1px);}
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--line);
+    border-radius:7px; width:38px; height:38px; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--ink);
+    transition:border-color .3s ease, color .3s ease;
+  }
+  .nav-toggle svg{width:18px; height:18px;}
+
+  @media (max-width:800px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      flex-direction:column; align-items:flex-start;
+      padding:8px 24px 20px;
+      gap:16px;
+      display:none;
+      transition:background-color .3s ease, border-color .3s ease;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{width:100%; padding:6px 0;}
+    .nav-toggle{display:flex;}
+  }
+
+  .hero{padding:76px 0 96px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+  }
+  .hero h1{
+    font-size:clamp(32px,5vw,50px);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .hero .role{
+    font-family:var(--font-mono);
+    color:var(--blue-ink);
+    font-size:clamp(16px,2vw,19px);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero p.lede{
+    color:var(--ink-soft);
+    font-size:16.5px;
+    max-width:52ch;
+    margin-bottom:30px;
+  }
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;}
+  .btn{
+    font-family:var(--font-sans);
+    font-weight:600; font-size:14.5px;
+    padding:13px 22px; border-radius:8px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn svg{width:15px; height:15px;}
+  .btn-primary{background:var(--blue); color:#fff;}
+  .btn-primary:hover{background:var(--blue-ink); transform:translateY(-1px); box-shadow:0 8px 20px -8px rgba(54,84,214,.55);}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink); transform:translateY(-1px);}
+
+  .hero-meta{
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-family:var(--font-mono); font-size:13px; color:var(--ink-soft);
+  }
+  .hero-meta span{display:inline-flex; align-items:center; gap:7px;}
+  .hero-meta svg{width:14px; height:14px; opacity:.7;}
+
+  .terminal{
+    background:var(--surface-inverse);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -25px rgba(0,0,0,0.45);
+    border:1px solid #262C36;
+    transition:background-color .3s ease;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px;
+    background:#1F252E;
+    border-bottom:1px solid #2A313C;
+  }
+  .terminal-bar .tdot{width:10px; height:10px; border-radius:50%;}
+  .tdot.r{background:#FF5F57;} .tdot.y{background:#FEBC2E;} .tdot.g{background:#28C840;}
+  .terminal-title{
+    margin-left:8px; font-family:var(--font-mono); font-size:12px; color:#7B8494;
+  }
+  .terminal-body{
+    padding:22px 20px 26px;
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    color:#D7DCE3;
+    min-height:230px;
+  }
+  .terminal-body .ln{margin-bottom:10px; white-space:pre-wrap; word-break:break-word;}
+  .terminal-body .prompt{color:var(--green);}
+  .terminal-body .path{color:#7B8494;}
+  .terminal-body .out{color:#B9C0CC;}
+  .terminal-body .key{color:#79A6FF;}
+  .terminal-body .str{color:#7FD99A;}
+  .terminal-body .cursor{
+    display:inline-block; width:7px; height:15px;
+    background:var(--green);
+    margin-left:2px; vertical-align:-2px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .about-grid{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:start;
+  }
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--ink-soft); font-size:16px; margin:0 0 16px 0;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .fact-list{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; gap:16px;
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  .fact{display:flex; gap:12px; align-items:flex-start;}
+  .fact svg{width:17px; height:17px; color:var(--blue); flex-shrink:0; margin-top:2px;}
+  .fact-title{font-weight:700; font-size:14px; margin-bottom:2px;}
+  .fact-sub{font-size:13.5px; color:var(--ink-soft);}
+
+  .stack-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  @media (max-width:860px){ .stack-grid{grid-template-columns:1fr;} }
+  .stack-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px;
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  .stack-card .cat{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft);
+    margin-bottom:16px; display:flex; align-items:center; gap:8px;
+  }
+  .stack-card .cat::before{content:"//"; color:var(--line); font-weight:600;}
+  .pills{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:500;
+    padding:6px 10px 6px 8px; border-radius:6px;
+    background:var(--green-bg); color:var(--green-ink);
+    display:inline-flex; align-items:center; gap:4px;
+    border:1px solid transparent;
+  }
+  .pill .plus{color:var(--green); font-weight:700;}
+
+  .proj-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:22px;
+  }
+  @media (max-width:768px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; height:100%;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease, background-color .3s ease;
+  }
+  .proj-card:hover{border-color:#C4CCD4; transform:translateY(-3px); box-shadow:0 16px 30px -20px rgba(23,27,33,.35);}
+  .proj-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .proj-file{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);
+    background:var(--paper); padding:4px 9px; border-radius:5px; border:1px solid var(--line-soft);
+  }
+  .proj-badge{
+    font-family:var(--font-mono); font-size:11.5px; font-weight:600;
+    color:var(--blue-ink); background:var(--hash-bg); padding:3px 9px; border-radius:20px;
+  }
+  .proj-card h3{font-size:18px; margin-bottom:4px;}
+  .proj-card .company{font-size:13.5px; font-weight:600; color:var(--blue-ink); margin-bottom:10px;}
+  .proj-card p{color:var(--ink-soft); font-size:14.5px; margin:0 0 14px 0;}
+  .proj-bullets{margin:0 0 18px 0; padding-left:18px; color:var(--ink-soft); font-size:14px; flex-grow:1;}
+  .proj-bullets li{margin-bottom:6px;}
+  .proj-bullets li::marker{color:var(--blue);}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
+  .tag{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
+    background:var(--paper); border:1px solid var(--line-soft);
+    padding:4px 8px; border-radius:5px;
+  }
+
+  .log{
+    position:relative;
+    padding-left:28px;
+  }
+  .log::before{
+    content:"";
+    position:absolute; left:5px; top:6px; bottom:6px;
+    width:2px; background:var(--line);
+  }
+  .commit{position:relative; padding-bottom:34px;}
+  .commit:last-child{padding-bottom:0;}
+  .commit::before{
+    content:"";
+    position:absolute; left:-28px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--blue);
+  }
+  .commit.active::before{background:var(--blue);}
+  .commit-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px;
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  .commit-head{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;
+  }
+  .commit-hash{
+    font-family:var(--font-mono); font-size:12px; color:var(--blue-ink);
+    background:var(--hash-bg); padding:2px 8px; border-radius:5px;
+    transition:background-color .3s ease;
+  }
+  .commit-status{
+    font-family:var(--font-mono); font-size:11.5px; font-weight:600;
+    padding:2px 9px; border-radius:5px;
+  }
+  .commit-status.progress{background:var(--amber-bg); color:var(--amber);}
+  .commit-status.done{background:var(--green-bg); color:var(--green-ink);}
+  .commit-msg{font-weight:700; font-size:16px; margin-bottom:4px;}
+  .commit-meta{font-size:14px; color:var(--ink-soft); font-family:var(--font-sans);}
+  .commit-period{
+    margin-left:auto; font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft);
+  }
+
+  .contact{
+    background:var(--surface-inverse); color:#fff; border-radius:18px;
+    padding:56px 44px; text-align:center; position:relative; overflow:hidden;
+    transition:background-color .3s ease;
+  }
+  .contact::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(600px 300px at 50% 0%, rgba(54,84,214,0.35), transparent 70%);
+    pointer-events:none;
+  }
+  .contact h2{font-size:clamp(26px,3.6vw,36px); margin-bottom:12px; position:relative;}
+  .contact p{color:#AEB5C1; max-width:46ch; margin:0 auto 30px; position:relative; font-size:15.5px;}
+  .contact-actions{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative;
+  }
+  .contact-actions .btn-primary{box-shadow:0 12px 26px -12px rgba(54,84,214,.7);}
+  .contact-links{
+    display:flex; gap:26px; justify-content:center; margin-top:30px; flex-wrap:wrap; position:relative;
+  }
+  .contact-links a{
+    font-family:var(--font-mono); font-size:13.5px; color:#C6CCD6;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+  .contact-links a:hover{color:#fff;}
+  .contact-links svg{width:14px; height:14px;}
+
+  footer{
+    padding:28px 0 40px; text-align:center;
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft);
+  }
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="#top" class="logo"><span class="dot">&gt;_</span> vinicius<span style="color:var(--ink-soft)">.dev</span></a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Ativar modo escuro">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#stack">Stack</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato" class="nav-cta">Contato</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">disponível para novas oportunidades</p>
+        <h1>Vinícius de Oliveira<br>Rodrigues</h1>
+        <p class="role">$ Desenvolvedor de Software &amp; Suporte Técnico</p>
+        <p class="lede">Desenvolvimento de software e suporte N3 especializado em aplicações web escaláveis. Atuação com integração de APIs, ecossistema JavaScript/TypeScript, Node.js, Vue.js, Nuxt, Python e banco de dados PostgreSQL.</p>
+        <div class="hero-actions">
+          <a href="https://drive.google.com/file/d/1FlDjzmlgqrE53EVoIW71pZDmRJUBCQ4s/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Ver currículo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+          <a href="https://wa.me/5551998657462" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            Chamar no Whatsapp
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.237a9.98 9.98 0 004.779 1.217h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.669-1.038-5.176-2.925-7.062A9.923 9.923 0 0012.012 2zm5.82 14.331c-.244.688-1.217 1.26-1.996 1.341-.533.056-1.229.1-3.571-.871-2.997-1.241-4.928-4.283-5.077-4.481-.148-.199-1.214-1.616-1.214-3.082 0-1.466.768-2.188 1.042-2.486.274-.298.595-.372.793-.372.198 0 .397.002.571.01.184.008.432-.07.676.516.248.596.843 2.062.918 2.21.074.149.124.322.025.521-.099.198-.149.322-.298.496-.148.174-.312.39-.446.524-.149.149-.304.312-.131.61.173.298.771 1.272 1.654 2.059 1.137 1.012 2.095 1.326 2.393 1.474.298.149.471.124.645-.074.174-.198.744-.867.942-1.165.198-.298.397-.248.669-.149.273.099 1.734.818 2.032.967.298.149.496.223.57.347.075.124.075.72-.169 1.408z"/></svg>
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"/></svg>
+            Porto Alegre / Dois Irmãos, RS
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Cursando ADS — Unifatecie
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.5v9L12 22l-9-6.5v-9L12 2z"/></svg>
+            +4 anos de experiência
+          </span>
+        </div>
+      </div>
+
+      <div class="terminal" role="img" aria-label="Janela de terminal simulando um perfil em JSON">
+        <div class="terminal-bar">
+          <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+          <span class="terminal-title">zsh — perfil.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="ln"><span class="prompt">$</span> <span class="path">~/vinicius</span> whoami</div>
+          <div class="ln out">vinicius-de-oliveira-rodrigues</div>
+          <div class="ln"><span class="prompt">$</span> <span class="path">~/vinicius</span> cat perfil.json</div>
+          <div class="ln out">{</div>
+          <div class="ln out">&nbsp;&nbsp;"objetivo": <span class="str">"Analista de Suporte / Dev Software"</span>,</div>
+          <div class="ln out">&nbsp;&nbsp;"frontend": [<span class="str">"Vue.js"</span>, <span class="str">"Nuxt"</span>, <span class="str">"Sass"</span>],</div>
+          <div class="ln out">&nbsp;&nbsp;"backend": [<span class="str">"Node.js"</span>, <span class="str">"Express.js"</span>, <span class="str">"Python"</span>, <span class="str">"Java"</span>],</div>
+          <div class="ln out">&nbsp;&nbsp;"suporte": [<span class="str">"Suporte N3"</span>, <span class="str">"Zendesk"</span>, <span class="str">"APIs"</span>],</div>
+          <div class="ln out">&nbsp;&nbsp;"dados": [<span class="str">"PostgreSQL"</span>, <span class="str">"SQL"</span>],</div>
+          <div class="ln out">&nbsp;&nbsp;"disponivel": <span class="key">true</span></div>
+          <div class="ln out">}<span class="cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">// sobre</p>
+        <h2 style="margin-bottom:18px;">Soluções técnicas e suporte especializado de software</h2>
+        <p>Sou desenvolvedor de software e analista de suporte N3 com experiência consolidada na construção, manutenção e integração de ambientes virtuais de aprendizagem e aplicações web escaláveis.</p>
+        <p>Tenho facilidade para diagnosticar e resolver problemas técnicos complexos, realizar integrações via APIs RESTful e atender chamados de alta prioridade via plataformas como Zendesk.</p>
+        <p>Possuo forte domínio de versionamento com Git e GitHub, atuação com metodologias ágeis e capacidade demonstrada de trabalho colaborativo em equipe.</p>
+      </div>
+      <div class="fact-list">
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+          <div>
+            <div class="fact-title">Experiência Profissional</div>
+            <div class="fact-sub">Mais de 4 anos atuando no Grupo A Educação no ambiente Avalia</div>
+          </div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <div>
+            <div class="fact-title">Suporte N3 e Resolução de Problemas</div>
+            <div class="fact-sub">Atendimento Zendesk e sustentação técnica de sistemas em produção</div>
+          </div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          <div>
+            <div class="fact-title">Integração de APIs e Sistemas</div>
+            <div class="fact-sub">Comunicação fluida entre serviços externos e aplicações internas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">// habilidades</p>
+        <h2>Competências e Tecnologias</h2>
+        <p>Ferramentas e práticas que domino no desenvolvimento e suporte de software.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-card">
+          <div class="cat">desenvolvimento web</div>
+          <div class="pills">
+            <span class="pill"><span class="plus">+</span>JavaScript</span>
+            <span class="pill"><span class="plus">+</span>TypeScript</span>
+            <span class="pill"><span class="plus">+</span>Node.js</span>
+            <span class="pill"><span class="plus">+</span>Express.js</span>
+            <span class="pill"><span class="plus">+</span>Vue.js</span>
+            <span class="pill"><span class="plus">+</span>Nuxt</span>
+            <span class="pill"><span class="plus">+</span>Sass</span>
+            <span class="pill"><span class="plus">+</span>Python</span>
+            <span class="pill"><span class="plus">+</span>Java</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="cat">suporte &amp; apis</div>
+          <div class="pills">
+            <span class="pill"><span class="plus">+</span>Suporte N3</span>
+            <span class="pill"><span class="plus">+</span>Zendesk</span>
+            <span class="pill"><span class="plus">+</span>Integração de APIs</span>
+            <span class="pill"><span class="plus">+</span>Resolução de Bugs</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="cat">banco &amp; processos</div>
+          <div class="pills">
+            <span class="pill"><span class="plus">+</span>PostgreSQL</span>
+            <span class="pill"><span class="plus">+</span>Git</span>
+            <span class="pill"><span class="plus">+</span>GitHub</span>
+            <span class="pill"><span class="plus">+</span>Metodologias Ágeis</span>
+            <span class="pill"><span class="plus">+</span>Trabalho em Equipe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIA / HISTÓRICO -->
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">// histórico profissional</p>
+        <h2>Experiências Reais</h2>
+        <p>Atuação profissional direta com desenvolvimento de software e suporte N3.</p>
+      </div>
+      <div class="proj-grid">
+
+        <article class="proj-card">
+          <div class="proj-top">
+            <span class="proj-file">grupo-a-educacao/avalia</span>
+            <span class="proj-badge">4 anos e 4 meses</span>
+          </div>
+          <h3>Desenvolvedor de Software e Suporte N3</h3>
+          <div class="company">Grupo A Educação · Porto Alegre, RS (Maio 2022 — Agosto 2026)</div>
+          <p>Desenvolvimento de software e suporte técnico N3 prestado para o ambiente virtual de aprendizagem Avalia.</p>
+          <ul class="proj-bullets">
+            <li>Integração de APIs realizada, facilitando a comunicação entre aplicações e serviços externos.</li>
+            <li>Atendimento ao cliente efetuado por meio da plataforma Zendesk, solucionando problemas técnicos do sistema.</li>
+            <li>Desenvolvimento de software focado em aplicações web escaláveis, abrangendo frontend e backend.</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="tag">Vue.js</span><span class="tag">Nuxt</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">PostgreSQL</span><span class="tag">Zendesk</span><span class="tag">APIs</span>
+          </div>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-top">
+            <span class="proj-file">grupo-a-educacao/estagio</span>
+            <span class="proj-badge">7 meses</span>
+          </div>
+          <h3>Estagiário em Desenvolvimento de Software</h3>
+          <div class="company">Grupo A Educação · Porto Alegre, RS (Dezembro 2021 — Maio 2022)</div>
+          <p>Formação profissional intensiva e prática através da base de conhecimento e tecnologias da empresa.</p>
+          <ul class="proj-bullets">
+            <li>Capacitação prática com JavaScript, TypeScript, Node.js e Express.js.</li>
+            <li>Construção de interfaces e reatividade com Vue.js, Nuxt e estilização em Sass.</li>
+            <li>Manipulação e estruturação de dados relacionais com PostgreSQL.</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Vue.js</span><span class="tag">Nuxt</span><span class="tag">Sass</span><span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section id="formacao">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">// formação acadêmica</p>
+        <h2>git log --formação</h2>
+        <p>Histórico educacional e certificações técnicas.</p>
+      </div>
+
+      <div class="log">
+        <div class="commit active">
+          <div class="commit-card">
+            <div class="commit-head">
+              <span class="commit-hash">ads2026</span>
+              <span class="commit-status progress">cursando</span>
+              <span class="commit-period">Jan 2025 — Dez 2026</span>
+            </div>
+            <div class="commit-msg">Tecnólogo em Análise e Desenvolvimento de Sistemas</div>
+            <div class="commit-meta">Faculdade Unifatecie · Novo Hamburgo, RS — Tecnologia da Informação</div>
+          </div>
+        </div>
+        <div class="commit">
+          <div class="commit-card">
+            <div class="commit-head">
+              <span class="commit-hash">tec2022</span>
+              <span class="commit-status done">concluído</span>
+              <span class="commit-period">Jan 2019 — Mai 2022</span>
+            </div>
+            <div class="commit-msg">Técnico em Informática para Internet</div>
+            <div class="commit-meta">Qi Faculdade e Escola Técnica · Canoas, RS — Informática</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Vamos conversar?</h2>
+        <p>Estou disponível para oportunidades como Analista de Suporte Técnico ou Desenvolvedor de Software. Vamos trocar uma ideia sobre como posso contribuir com a sua equipe.</p>
+        <div class="contact-actions">
+          <a href="https://wa.me/5551998657462" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Chamar no Whatsapp
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.237a9.98 9.98 0 004.779 1.217h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.669-1.038-5.176-2.925-7.062A9.923 9.923 0 0012.012 2zm5.82 14.331c-.244.688-1.217 1.26-1.996 1.341-.533.056-1.229.1-3.571-.871-2.997-1.241-4.928-4.283-5.077-4.481-.148-.199-1.214-1.616-1.214-3.082 0-1.466.768-2.188 1.042-2.486.274-.298.595-.372.793-.372.198 0 .397.002.571.01.184.008.432-.07.676.516.248.596.843 2.062.918 2.21.074.149.124.322.025.521-.099.198-.149.322-.298.496-.148.174-.312.39-.446.524-.149.149-.304.312-.131.61.173.298.771 1.272 1.654 2.059 1.137 1.012 2.095 1.326 2.393 1.474.298.149.471.124.645-.074.174-.198.744-.867.942-1.165.198-.298.397-.248.669-.149.273.099 1.734.818 2.032.967.298.149.496.223.57.347.075.124.075.72-.169 1.408z"/></svg>
+          </a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:ti.vinicius.dev@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            ti.vinicius.dev@gmail.com
+          </a>
+          <a href="https://viniciusolro.dev" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            viniciusolro.dev
+          </a>
+          <a href="tel:51998657462">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (51) 99865-7462
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Vinícius de Oliveira Rodrigues — Dois Irmãos, RS</div>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  let currentTheme = prefersDark.matches ? 'dark' : 'light';
+
+  function applyTheme(theme){
+    currentTheme = theme;
+    if (theme === 'dark'){
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro');
+  }
+
+  applyTheme(currentTheme);
+
+  let userChose = false;
+  themeToggle.addEventListener('click', () => {
+    userChose = true;
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  prefersDark.addEventListener('change', (e) => {
+    if (!userChose) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const revealTargets = document.querySelectorAll('.section-head, .about-grid, .stack-grid, .proj-grid, .log, .contact');
+  revealTargets.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealTargets.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
